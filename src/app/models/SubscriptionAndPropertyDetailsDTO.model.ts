@@ -1,6 +1,16 @@
-export interface SubscriberPropertyDetail{
-        id:number;
+export interface SubscriptionAndPropertyDetailsDTO{
+    
+    //SubscriptionPerUser
+
         subscriptionPerUserId:number;
+        subscriptionTypeId:number;
+        areaId:number;
+        userId:number;
+        startDate:number;
+        endDate:number;
+       
+        //SubscriberPropertyDetail    
+        subscriberPropertyDetailId:number;
         propertyTypeId:number;
         cityId:number;
         neighborhoodId:number;

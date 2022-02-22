@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -72,7 +73,8 @@
               "proxyConfig": "src/proxy.config.json"
             },
             "development": {
-              "browserTarget": "apartmentBrokerage:build:development"
+              "browserTarget": "apartmentBrokerage:build:development",
+              "proxyConfig": "src/proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

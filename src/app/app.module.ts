@@ -8,6 +8,9 @@ import { LogInComponent } from './user/log-in/log-in.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LogInService } from './services/log-in.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
   providers: [LogInService],
   bootstrap: [AppComponent]
