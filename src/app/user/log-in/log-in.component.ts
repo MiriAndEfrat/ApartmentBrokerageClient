@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
 import { UserLogInDTO } from 'src/app/models/userLogInDTO.model';
 import {Observable} from "rxjs";
-import { LogInService } from 'src/app/services/log-in.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 
@@ -15,7 +15,7 @@ export class LogInComponent implements OnInit {
 
   logInForm!:FormGroup;
   user!:UserLogInDTO;  
-  constructor(private loginservice:LogInService  ) { }
+  constructor(private _userService:UserService  ) { }
 
   ngOnInit(): void {
     this.logInForm=new FormGroup({
@@ -30,7 +30,7 @@ login()
   let password=this.logInForm.controls["password"].value
    this.user=new UserLogInDTO(email,password);
    
-  this.loginservice.logIn(this.user).subscribe(data=>{alert(data.id)})
+  this._userService.logIn(this.user).subscribe(data=>{alert(data.id)})
 }
 
 }

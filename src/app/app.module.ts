@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LogInComponent } from './user/log-in/log-in.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import { LogInService } from './services/log-in.service';
+import { UserService } from './services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
@@ -25,7 +25,7 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserAnimationsModule,
     MatSliderModule
   ],
-  providers: [LogInService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

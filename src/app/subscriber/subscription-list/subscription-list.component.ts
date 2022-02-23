@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SubscriptionPerUser } from 'src/app/models/subscription-per-user.model';
+import { SubscriptionPerUserService } from 'src/app/services/subscription-per-user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-subscription-list',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscriptionListComponent implements OnInit {
 
-  constructor() { }
+  subscriptions!:SubscriptionPerUser[];
+
+  constructor(private _userService:UserService,private _subscriptionPerUserService:SubscriptionPerUserService) { }
+
+
 
   ngOnInit(): void {
+    this._subscriptionPerUserService.getSubscriptionsById(this._userService.currentUser.id).subscribe(data=>{this.subscriptions=data});
+
   }
 
 }
