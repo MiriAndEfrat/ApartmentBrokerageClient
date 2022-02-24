@@ -15,6 +15,8 @@ export class LogInComponent implements OnInit {
 
   logInForm!: FormGroup;
   user!: UserLogInDTO;
+  // userId!:number
+
   constructor(private _userService: UserService) { }
 
   ngOnInit(): void {
@@ -32,7 +34,8 @@ export class LogInComponent implements OnInit {
     console.log(this.user, "this.user");
     debugger
 
-    this._userService.logIn(this.user).subscribe(data => { alert(data.id) })
+    this._userService.logIn(this.user).subscribe(data => { alert(data.id);this._userService.currentUser=data})
+
   }
 
 }

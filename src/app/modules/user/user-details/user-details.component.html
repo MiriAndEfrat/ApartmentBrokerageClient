@@ -1,0 +1,35 @@
+<p>user-details works!</p>
+
+<form [formGroup]="userDetail">
+    <div>
+<mat-form-field appearance="fill">
+    <mat-label>first name</mat-label>
+    <input matInput formControlName="firstName" name="firstName" id="firstName" >
+  </mat-form-field>
+    </div>
+    <div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>last name</mat-label>
+    <input matInput formControlName="lastName" name="lastName" id="lastName" >
+  </mat-form-field>
+  </div>
+
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required #email>
+      <mat-error *ngIf="email.oninvalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- <div>
+    <mat-form-field appearance="fill">
+        <mat-label>Phone number</mat-label>
+        <example-tel-input formControlName="phone1" required></example-tel-input>
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Include area code</mat-hint>
+      </mat-form-field>
+  </div> -->
+
+</form>
