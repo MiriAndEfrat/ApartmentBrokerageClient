@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PropertyDetail } from '../models/property-details.model';
 
 @Injectable({
@@ -9,12 +10,12 @@ export class PropertyDetailsService {
 
   constructor(private _http: HttpClient) { }
 
-  public getByAreaId(id:number){
-    return this._http.get("api/PropertyDetailController/areaId/"+id);
+  public getByAreaId(id:number):Observable<PropertyDetail[]>{
+    return this._http.get<PropertyDetail[]>("api/PropertyDetailController/areaId/"+id);
   }
 
-  public getByUserId(id:number){
-    return this._http.get("api/PropertyDetailController/advertiserId/"+id);
+  public getByUserId(id:number):Observable<PropertyDetail[]>{
+    return this._http.get<PropertyDetail[]>("api/PropertyDetailController/advertiserId/"+id);
   }
 
   public postPropertyDetail(propertyDetail:PropertyDetail){

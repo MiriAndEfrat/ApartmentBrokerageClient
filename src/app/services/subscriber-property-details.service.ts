@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SubscriberPropertyDetail } from '../models/subscriber-property-detail.model';
 
 @Injectable({
@@ -9,8 +10,8 @@ export class SubscriberPropertyDetailsService {
 
   constructor(private _http: HttpClient) { }
 
-  public getPropertyDetailsBySubscriberId(id:number){
-    return this._http.get("api/SubscriberPropertyDetailsController/"+id);
+  public getPropertyDetailsBySubscriberId(id:number):Observable<SubscriberPropertyDetail>{
+    return this._http.get<SubscriberPropertyDetail>("api/SubscriberPropertyDetailsController/"+id);
   }
 
   public PutPropertyDetails(property:SubscriberPropertyDetail){
