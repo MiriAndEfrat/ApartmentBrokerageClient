@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserLogInDTO } from 'src/app/models/userLogInDTO.model';
+import { UserLogInDTO } from 'src/app/models/user-logIn-dto.model';
 import { Observable } from "rxjs";
 import { UserService } from 'src/app/services/user.service';
 

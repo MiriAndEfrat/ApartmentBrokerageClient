@@ -6,3 +6,9 @@ export class UserLogInDTO{
         this.password=password;
     }
 }
+
+// export interface UserLogInDTO{
+//     identityNumber:string ;
+//     password:string;
+   
+// }

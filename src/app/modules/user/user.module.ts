@@ -7,6 +7,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { RouterModule, Routes } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 const ROUTES:Routes=[
@@ -26,7 +29,9 @@ const ROUTES:Routes=[
     MatFormFieldModule,
     RouterModule.forChild(ROUTES),
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatAutocompleteModule
     
     ],
   

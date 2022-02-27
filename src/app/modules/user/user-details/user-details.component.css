@@ -29,25 +29,67 @@
 
 
   
-  .example-tel-input-container {
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  
+  .mat-form-field {
+    margin-right: 12px;
+  }
+
+  
+
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
   
-  .example-tel-input-element {
-    border: none;
-    background: none;
-    padding: 0;
-    outline: none;
-    font: inherit;
-    text-align: center;
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
   }
   
-  .example-tel-input-spacer {
-    opacity: 0;
-    transition: opacity 200ms;
+  .example-button-row button{
+    background: rgb(73, 133, 223);
+    /* width: 490px; */
+    height: 50px; /*double of your required circle radius*/
+    width: 200px; 
+    
   }
-  
-  :host.example-floating .example-tel-input-spacer {
-    opacity: 1;
-  }
-  

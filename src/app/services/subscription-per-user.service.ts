@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SubscriptionPerUser } from '../models/subscription-per-user.model';
 // import { Observable } from 'rxjs';
-import { SubscriptionAndPropertyDetailsDTO } from '../models/SubscriptionAndPropertyDetailsDTO.model';
+import { SubscriptionAndPropertyDetailsDTO } from '../models/subscription-and-property-details-dto.model';
 
 @Injectable({
   providedIn: 'root'
