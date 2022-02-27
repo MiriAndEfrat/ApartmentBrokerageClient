@@ -34,5 +34,6 @@ import { ManagementModule } from './modules/management/management.module';
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
+
 const ROUTES:Routes=[
   {path:"userDetails",component:UserDetailsComponent}
 
