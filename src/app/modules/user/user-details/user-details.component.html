@@ -19,6 +19,16 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
+    <mat-label>ת.ז או דרכון</mat-label>
+    <mat-select formControlName="identityType" name="identityType" >
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let c of options" [value]="c.id">
+        {{c.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>סיסמא</mat-label>
     <input matInput formControlName="password" name="password" id="password" required [type]="hide ? 'password' : 'text'" >
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -147,7 +157,7 @@
   </div>
 
   <div class="example-button-row">
-    <button  mat-button (click)="saveUserDetails">שמירה</button>
+    <button  mat-button (click)="saveUserDetails()">שמירה</button>
   </div>
     
 </form>

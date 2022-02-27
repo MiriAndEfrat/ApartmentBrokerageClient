@@ -6,6 +6,8 @@ import { UserLogInDTO } from 'src/app/models/user-logIn-dto.model';
 
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
+import { PersonDTO } from 'src/app/models/person-dto.model';
 
 @Component({
   selector: 'app-user-details',
@@ -29,12 +31,13 @@ export class UserDetailsComponent implements OnInit {
     
     types=this.type.map(o=>o.name);
     // filteredOptions!: Observable<Street[]>;
-  constructor() { 
+  constructor(private _userService: UserService) { 
     
   }
 
   ngOnInit(): void {
     this.userDetail=new FormGroup({
+     
      email:new FormControl("",[Validators.required, Validators.email]),
      street:new FormControl("",[Validators.required]),
      city:new FormControl("",[Validators.required]),
@@ -49,8 +52,14 @@ export class UserDetailsComponent implements OnInit {
      floor:new FormControl("",[Validators.required]),
      mailBox:new FormControl("",[Validators.required]),
      userType: new FormControl("",[Validators.required]),
-     id: new FormControl("",[Validators.required])
+     identityType:new FormControl("",[Validators.required])
+    //  id: new FormControl("",[Validators.required])
     })
+    
+    if(this._userService.currentUser!=null)
+    {
+      this.userDetail.patchValue(this._userService.currentUser);
+    }
     // this.filteredOptions = this.userDetail.controls['city'].valueChanges.pipe(
     //   startWith(''),
     //   map(value => this._filter(value)),
@@ -72,8 +81,38 @@ export class UserDetailsComponent implements OnInit {
     return email.hasError('email') ? 'Not a valid email' : '';
   }
 
+  saveUserDetails()
+{
+  if(this._userService.currentUser==null)
+  {
+    let email=this.userDetail.controls['email'].value;
+    let street=this.userDetail.controls['street'].value;
+    let city=this.userDetail.controls['city'].value;
+    let password=this.userDetail.controls['password'].value;
+    let firstName=this.userDetail.controls['firstname'].value;
+    let lastName=this.userDetail.controls['lastName'].value;
+    let phone1=this.userDetail.controls['phone1'].value;
+    let phone2=this.userDetail.controls['phone2'].value;
+    let phone3=this.userDetail.controls['phone3'].value;
+    let fax=this.userDetail.controls['fax'].value;
+    let buildingNumber=this.userDetail.controls['buildingNumber'].value;
+    let floor=this.userDetail.controls['floor'].value;
+    let mailBox=this.userDetail.controls['mailBox'].value;
+    let userType=this.userDetail.controls['userType'].value;
+
+
+    this._userService.currentUser=this.userDetail.value;
+    // this._userService.currentUser.name=this.userAdmin.name.replace(/\s/g, '');
+    // this.userAdmin.password=this.userAdmin.password.replace(/\s/g, '');
+    this._userService.postUser(this._userService.currentUser).subscribe(data=>{alert(data)});
+  }
+  else{
+    this._userService.currentUser=this.userDetail.value;
+    
+    this._userService.postUser(this._userService.currentUser).subscribe(data=>{alert(data)});
+  }
+
+}
 }
 
-saveUserDetails(){
-  
-}
+

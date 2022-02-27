@@ -10,35 +10,34 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private _http:HttpClient) { }
 
-  // currentUser!:PersonDTO;
-  currentUser:PersonDTO;
+  currentUser!:PersonDTO;
   
 
   
   getUsers():Observable<PersonDTO[]>
   {
-    return this.http.get<PersonDTO[]>("api/User")
+    return this._http.get<PersonDTO[]>("api/User")
   }
 
-  addNewUser(user:PersonDTO):Observable<number>
+  postUser(user:PersonDTO):Observable<number>
   {
-     return this.http.post<number>("api/User",user)
+     return this._http.post<number>("api/User",user)
   }
-  edit(user:PersonDTO)
+  putUser(user:PersonDTO)
   {
-    this.http.put("api/User",user)
+    this._http.put("api/User",user)
       
   }
 
   getUserById(id:number):Observable<PersonDTO>
   {
-    return this.http.get<PersonDTO>("api/User/"+id)
+    return this._http.get<PersonDTO>("api/User/"+id)
   }
   logIn(user:UserLogInDTO):Observable<PersonDTO>
   {
-    return this.http.post<PersonDTO>("api/User/login",user);
+    return this._http.post<PersonDTO>("api/User/login",user);
   }
 
 
