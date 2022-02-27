@@ -1,35 +1,153 @@
 <p>user-details works!</p>
 
 <form [formGroup]="userDetail">
-    <div>
+    
+<div  class="example-container">
 <mat-form-field appearance="fill">
-    <mat-label>first name</mat-label>
-    <input matInput formControlName="firstName" name="firstName" id="firstName" >
+    <mat-label>שם פרטי</mat-label>
+    <input matInput formControlName="firstName" name="firstName" id="firstName" required>
   </mat-form-field>
-    </div>
-    <div>
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>שם משפחה</mat-label>
+    <input matInput formControlName="lastName" name="lastName" id="lastName" required>
+  </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>last name</mat-label>
-    <input matInput formControlName="lastName" name="lastName" id="lastName" >
+    <mat-label>תעודת זהות/ דרכון</mat-label>
+    <input matInput formControlName="id" name="id" id="id" required>
   </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>סיסמא</mat-label>
+    <input matInput formControlName="password" name="password" id="password" required [type]="hide ? 'password' : 'text'" >
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  </div>
+ 
+
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>אמייל</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required #email>
+      <mat-error *ngIf="email.oninvalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>פקס</mat-label>
+      <input matInput formControlName="fax" name="fax" id="fax" required>
+    </mat-form-field>
   </div>
 
   <div class="example-container">
     <mat-form-field appearance="fill">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" formControlName="email" required #email>
-      <mat-error *ngIf="email.oninvalid">{{getErrorMessage()}}</mat-error>
+      <mat-label>נייד 1</mat-label>
+      <input matInput  formControlName="phone1" required >
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>נייד 2</mat-label>
+      <input matInput  formControlName="phone2" required >
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>נייד 3</mat-label>
+      <input matInput  formControlName="phone3" required >
+      <mat-icon matSuffix>phone</mat-icon>
     </mat-form-field>
   </div>
 
+  <div class="example-container">
+    <!-- <mat-form-field  appearance="fill">
+      <mat-label>עיר</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             formControlName="city"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions|async " [value]="option.name">
+          {{option.name}}
+        </mat-option>
+    </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field  appearance="fill">
+      <mat-label>רחוב</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             formControlName="street"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions|async " [value]="option.name">
+          {{option.name}}
+        </mat-option>
+    </mat-autocomplete>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>עיר</mat-label>
+      <mat-select formControlName="city" name="city" >
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let c of options" [value]="c.id">
+          {{c.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>רחוב</mat-label>
+      <mat-select formControlName="street" name="street" required>
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let s of options" [value]="s.id">
+          {{s.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>מס בניין</mat-label>
+      <input matInput formControlName="buildingNumber" name="buildingNumber" type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>קומה</mat-label>
+      <input matInput formControlName="floor" name="floor" type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>תיבת דואר</mat-label>
+      <input matInput formControlName="mailBox" name="mailBox" type="number">
+    </mat-form-field>
+
+
+  </div>
   
-    <!-- <div>
-      <mat-select>
-      <mat-label>Phone number</mat-label>
-      <example-tel-input formControlName="phone1" required></example-tel-input>
-      <mat-icon matSuffix>phone</mat-icon>
-      <mat-hint>Include area code</mat-hint>
-    </mat-select>
-    </div> -->
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>סוג המשתמש</mat-label>
+      <mat-select formControlName="userType" multiple>
+        <mat-select-trigger>
+          {{userDetail.controls['userType'].value ? userDetail.controls['userType'].value[0] : ''}}
+          <span *ngIf="userDetail.controls['userType'].value?.length > 1" class="example-additional-selection">
+            (+{{userDetail.controls['userType'].value.length - 1}} {{userDetail.controls['userType'].value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of types " [value]="topping">{{userDetail.controls['userType']}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="example-button-row">
+    <button  mat-button (click)="saveUserDetails">שמירה</button>
+  </div>
+    
 </form>

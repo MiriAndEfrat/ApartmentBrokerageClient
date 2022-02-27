@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PersonDTO } from '../models/personDTO.model';
-import { UserLogInDTO } from '../models/userLogInDTO.model';
+import { PersonDTO } from '../models/person-dto.model';
+import { UserLogInDTO } from '../models/user-logIn-dto.model';
 import {Observable} from "rxjs";
 import { User } from '../models/user.model';
 
@@ -12,7 +12,10 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  currentUser!:PersonDTO;
+  // currentUser!:PersonDTO;
+  currentUser:PersonDTO;
+  
+
   
   getUsers():Observable<PersonDTO[]>
   {
