@@ -10,12 +10,14 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient) {;
+  }
 
-  currentUser!:PersonDTO;
+  // currentUser!:PersonDTO;
   
+  currentUser= new PersonDTO();
 
-  
+ 
   getUsers():Observable<PersonDTO[]>
   {
     return this._http.get<PersonDTO[]>("api/User")

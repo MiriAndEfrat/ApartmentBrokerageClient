@@ -40,7 +40,7 @@ export class PersonDTO{
         this.mailBox=mailBox;
         this.userType=userType;
     }
-        id:number;
+        id:number=0;
         identitynumer:string;
         identityId:number;
         streetId:number=1;
@@ -55,6 +55,6 @@ export class PersonDTO{
         buildingNumber:number;
         floor:number;
         mailBox:number;
-        userType:number[]
+        userType:number[];
         token:string="";
     }

@@ -17,6 +17,7 @@ import { PersonDTO } from 'src/app/models/person-dto.model';
 export class UserDetailsComponent implements OnInit {
      userDetail!:FormGroup
      hide=true
+     
      options: Street[] = [
       {id:1,name: 'שאולזון',cityId:1},
       {id:2,name: 'אבן דנאן',cityId:1},
@@ -26,13 +27,12 @@ export class UserDetailsComponent implements OnInit {
     type: UserType[] = [
       {id:1,name: 'מפרסם'},
       {id:2,name: 'מנוי'},
-      {id:3,name: 'מנהל'},
+      
     ];
     
     types=this.type.map(o=>o.name);
     // filteredOptions!: Observable<Street[]>;
-  constructor(private _userService: UserService) { 
-    
+  constructor(private _userService: UserService) {   
   }
 
   ngOnInit(): void {
@@ -52,8 +52,11 @@ export class UserDetailsComponent implements OnInit {
      floor:new FormControl("",[Validators.required]),
      mailBox:new FormControl("",[Validators.required]),
      userType: new FormControl("",[Validators.required]),
-     identityType:new FormControl("",[Validators.required])
-    //  id: new FormControl("",[Validators.required])
+     identityType:new FormControl("",[Validators.required]),
+     identityNumer: new FormControl("",[Validators.required]),
+     id: new FormControl(this._userService.currentUser.id),
+     token: new FormControl("")
+
     })
     
     if(this._userService.currentUser!=null)
@@ -83,33 +86,34 @@ export class UserDetailsComponent implements OnInit {
 
   saveUserDetails()
 {
-  if(this._userService.currentUser==null)
+  this._userService.currentUser=this.userDetail.value;
+
+  if(this._userService.currentUser.id==0)
   {
-    let email=this.userDetail.controls['email'].value;
-    let street=this.userDetail.controls['street'].value;
-    let city=this.userDetail.controls['city'].value;
-    let password=this.userDetail.controls['password'].value;
-    let firstName=this.userDetail.controls['firstname'].value;
-    let lastName=this.userDetail.controls['lastName'].value;
-    let phone1=this.userDetail.controls['phone1'].value;
-    let phone2=this.userDetail.controls['phone2'].value;
-    let phone3=this.userDetail.controls['phone3'].value;
-    let fax=this.userDetail.controls['fax'].value;
-    let buildingNumber=this.userDetail.controls['buildingNumber'].value;
-    let floor=this.userDetail.controls['floor'].value;
-    let mailBox=this.userDetail.controls['mailBox'].value;
-    let userType=this.userDetail.controls['userType'].value;
+    this._userService.postUser(this._userService.currentUser).subscribe(data=>{this._userService.currentUser.id=data;alert(data);});
+    // let email=this.userDetail.controls['email'].value;
+    // let street=this.userDetail.controls['street'].value;
+    // let city=this.userDetail.controls['city'].value;
+    // let password=this.userDetail.controls['password'].value;
+    // let firstName=this.userDetail.controls['firstname'].value;
+    // let lastName=this.userDetail.controls['lastName'].value;
+    // let phone1=this.userDetail.controls['phone1'].value;
+    // let phone2=this.userDetail.controls['phone2'].value;
+    // let phone3=this.userDetail.controls['phone3'].value;
+    // let fax=this.userDetail.controls['fax'].value;
+    // let buildingNumber=this.userDetail.controls['buildingNumber'].value;
+    // let floor=this.userDetail.controls['floor'].value;
+    // let mailBox=this.userDetail.controls['mailBox'].value;
+    // let userType=this.userDetail.controls['userType'].value;
 
-
-    this._userService.currentUser=this.userDetail.value;
+    
     // this._userService.currentUser.name=this.userAdmin.name.replace(/\s/g, '');
     // this.userAdmin.password=this.userAdmin.password.replace(/\s/g, '');
-    this._userService.postUser(this._userService.currentUser).subscribe(data=>{alert(data)});
+    
   }
   else{
-    this._userService.currentUser=this.userDetail.value;
     
-    this._userService.postUser(this._userService.currentUser).subscribe(data=>{alert(data)});
+    this._userService.putUser(this._userService.currentUser);
   }
 
 }

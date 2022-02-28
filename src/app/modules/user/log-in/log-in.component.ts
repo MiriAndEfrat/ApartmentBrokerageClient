@@ -34,7 +34,8 @@ export class LogInComponent implements OnInit {
     console.log(this.user, "this.user");
     debugger
 
-    this._userService.logIn(this.user).subscribe(data => { alert(data.id);this._userService.currentUser=data})
+    this._userService.logIn(this.user).subscribe(data => { this._userService.currentUser=data;alert(this._userService.currentUser.id);})
+
 
   }
 
