@@ -1,12 +1,17 @@
 
 <form [formGroup]="logInForm"> 
 
-    <input type="text" formControlName="email" name="email" id="email"/>
+    <input type="text" formControlName="identityNumber" name="identityNumber" id="identityNumber"/>
     <br/>
     <input type="password" formControlName="password" name="password" id="password" />
 
     <button (click)="login()">login</button>
+    <!-- <button *ngIf="userType > 1">מנוי</button>
+    <button *ngIf="userType > 1">מפרסם</button> -->
+    <div *ngIf="userType > 1">
+    <button (click)="navigateToSubscriber()">מנוי</button>
+    <button (click)="navigateToAdvertiser()">מפרסם</button>
+   </div>
 
-   
-
+   <button (click)="Register()">לקוח חדש</button>
  </form> 

@@ -16,7 +16,7 @@ export class SubscriptionListComponent implements OnInit {
   subscriptions!:SubscriptionPerUser[];
   
   clickedRows = new Set<SubscriptionPerUser>();////////////
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];////////////
+  displayedColumns: string[] = ['area', 'startDate', 'endDate'];////////////
 
 
   constructor(private _userService:UserService,private _subscriptionPerUserService:SubscriptionPerUserService) { }

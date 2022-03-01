@@ -13,7 +13,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 const ROUTES:Routes=[
-  {path:"userDetails",component:UserDetailsComponent}
+  {path:"userDetails",component:UserDetailsComponent},
+  // {path:"advertiser",component:UserDetailsComponent},
+  // {path:"subscriber",component:UserDetailsComponent},
+  // {path:"management",component:UserDetailsComponent}
 
   ]
 
@@ -34,6 +37,7 @@ const ROUTES:Routes=[
     MatAutocompleteModule
     
     ],
+  
   
 })
 export class UserModule { }

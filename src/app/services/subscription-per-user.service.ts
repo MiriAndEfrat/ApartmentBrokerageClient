@@ -10,6 +10,7 @@ import { SubscriptionAndPropertyDetailsDTO } from '../models/subscription-and-pr
 })
 export class SubscriptionPerUserService {
 
+  // subscriptionsPerUser!:SubscriptionPerUser[];
   constructor(private _http: HttpClient) { }
 
   public getSubscriptionsById(id:number):Observable<SubscriptionPerUser[]>{
