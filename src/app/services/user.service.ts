@@ -27,7 +27,7 @@ export class UserService {
 
   postUser(user:PersonDTO):Observable<number>
   {
-     return this._http.post<number>("api/User/",user)
+     return this._http.post<number>("api/User",user)
   }
   putUser(user:PersonDTO)
   {

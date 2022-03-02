@@ -17,7 +17,7 @@ export class LogInComponent implements OnInit {
 
   logInForm!: FormGroup;
   user!: UserLogInDTO;
-  userType!: number;
+  userType: number=0;
   hide = true;
 
   constructor(private _userService: UserService, private _router: Router) { }

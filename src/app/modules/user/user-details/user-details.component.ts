@@ -55,11 +55,11 @@ export class UserDetailsComponent implements OnInit {
      identityType:new FormControl("",[Validators.required]),
      identityNumer: new FormControl("",[Validators.required]),
      id: new FormControl(this._userService.currentUser.id),
-     token: new FormControl("")
+     token: new FormControl()
 
     })
     
-    if(this._userService.currentUser!=null)
+    if(this._userService.currentUser.id!=0)
     {
       this.userDetail.patchValue(this._userService.currentUser);
     }
@@ -87,10 +87,15 @@ export class UserDetailsComponent implements OnInit {
   saveUserDetails()
 {
   this._userService.currentUser=this.userDetail.value;
+  debugger
 
   if(this._userService.currentUser.id==0)
   {
-    this._userService.postUser(this._userService.currentUser).subscribe(data=>{this._userService.currentUser.id=data;alert(data);});
+    this._userService.postUser(this._userService.currentUser).subscribe(data=>{
+      alert(data);
+      debugger
+      this._userService.currentUser.id=data;
+    });
     // let email=this.userDetail.controls['email'].value;
     // let street=this.userDetail.controls['street'].value;
     // let city=this.userDetail.controls['city'].value;
@@ -112,7 +117,8 @@ export class UserDetailsComponent implements OnInit {
     
   }
   else{
-    
+    debugger
+
     this._userService.putUser(this._userService.currentUser);
   }
 

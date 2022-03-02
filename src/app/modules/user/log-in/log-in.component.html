@@ -1,17 +1,37 @@
 
 <form [formGroup]="logInForm"> 
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>ת.ז</mat-label>
+      <input matInput formControlName="identityNumber" name="identityNumber" id="identityNumber" required>
+    </mat-form-field>
+  </div>
 
-    <input type="text" formControlName="identityNumber" name="identityNumber" id="identityNumber"/>
-    <br/>
-    <input type="password" formControlName="password" name="password" id="password" />
 
-    <button (click)="login()">login</button>
-    <!-- <button *ngIf="userType > 1">מנוי</button>
-    <button *ngIf="userType > 1">מפרסם</button> -->
-    <div *ngIf="userType > 1">
-    <button (click)="navigateToSubscriber()">מנוי</button>
-    <button (click)="navigateToAdvertiser()">מפרסם</button>
-   </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input formControlName="password" name="password" id="password" matInput [type]="hide ? 'password' : 'text'" required>
+      <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  
+  </div>
 
-   <button (click)="Register()">לקוח חדש</button>
+  
+   <section>
+     <div class="example-button-row">
+      <button (click)="login()">login</button>
+     </div>
+    <div *ngIf="userType <2" class="example-button-row">
+      <button (click)="Register()" mat-raised-button>לקוח חדש</button>   
+    </div>
+    <div *ngIf="userType > 1" class="example-button-row">
+      <button (click)="navigateToSubscriber()" mat-raised-button>מנוי</button>
+      <button (click)="navigateToAdvertiser()" mat-raised-button>מפרסם</button>
+
+    </div>
+  </section>
+  
  </form> 
