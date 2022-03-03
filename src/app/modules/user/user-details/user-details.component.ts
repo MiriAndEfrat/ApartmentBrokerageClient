@@ -30,7 +30,7 @@ export class UserDetailsComponent implements OnInit {
       
     ];
     
-    types=this.type.map(o=>o.name);
+    //types=this.type.map(o=>o.name);
     // filteredOptions!: Observable<Street[]>;
   constructor(private _userService: UserService) {   
   }
@@ -39,8 +39,8 @@ export class UserDetailsComponent implements OnInit {
     this.userDetail=new FormGroup({
      
      email:new FormControl("",[Validators.required, Validators.email]),
-     street:new FormControl("",[Validators.required]),
-     city:new FormControl("",[Validators.required]),
+     street:new FormControl([Validators.required]),
+     city:new FormControl([Validators.required]),
      password:new FormControl("",[Validators.required]),
      firstName:new FormControl("",[Validators.required]),
      lastName:new FormControl("",[Validators.required]),
@@ -48,12 +48,13 @@ export class UserDetailsComponent implements OnInit {
      phone2:new FormControl("",[Validators.required]),
      phone3:new FormControl("",[Validators.required]),
      fax:new FormControl("",[Validators.required]),
-     buildingNumber:new FormControl("",[Validators.required]),
-     floor:new FormControl("",[Validators.required]),
-     mailBox:new FormControl("",[Validators.required]),
-     userType: new FormControl("",[Validators.required]),
-     identityType:new FormControl("",[Validators.required]),
-     identityNumer: new FormControl("",[Validators.required]),
+     buildingNumber:new FormControl([Validators.required]),
+     floor:new FormControl([Validators.required]),
+     mailBox:new FormControl([Validators.required]),
+     userType: new FormControl([Validators.required]),
+     identityType:new FormControl([Validators.required]),
+     //identityNumer: new FormControl("",[Validators.required]),
+     identityNumer:new FormControl("",[Validators.required]),
      id: new FormControl(this._userService.currentUser.id),
      token: new FormControl()
 
@@ -87,10 +88,12 @@ export class UserDetailsComponent implements OnInit {
   saveUserDetails()
 {
   this._userService.currentUser=this.userDetail.value;
+  this._userService.currentUser.userType=[1]
   debugger
 
   if(this._userService.currentUser.id==0)
   {
+    debugger
     this._userService.postUser(this._userService.currentUser).subscribe(data=>{
       alert(data);
       debugger

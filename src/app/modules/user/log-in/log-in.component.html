@@ -22,7 +22,7 @@
   
    <section>
      <div class="example-button-row">
-      <button (click)="login()">login</button>
+      <button [disabled]="logInForm.invalid" (click)="login()">login</button>
      </div>
     <div *ngIf="userType <2" class="example-button-row">
       <button (click)="Register()" mat-raised-button>לקוח חדש</button>   

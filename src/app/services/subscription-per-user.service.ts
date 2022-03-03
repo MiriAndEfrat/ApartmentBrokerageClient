@@ -14,11 +14,11 @@ export class SubscriptionPerUserService {
   constructor(private _http: HttpClient) { }
 
   public getSubscriptionsById(id:number):Observable<SubscriptionPerUser[]>{
-    return this._http.get<SubscriptionPerUser[]>("api/SubscriptionPerUserController/"+id);
+    return this._http.get<SubscriptionPerUser[]>("api/SubscriptionPerUser/"+id);
   }
 
   public postSubscription(subscriptionAndPropertyDetailsDTO:SubscriptionAndPropertyDetailsDTO):Observable<number>{
-    return this._http.post<number>("api/SubscriptionPerUserController/",subscriptionAndPropertyDetailsDTO);
+    return this._http.post<number>("api/SubscriptionPerUser/",subscriptionAndPropertyDetailsDTO);
   }
 
 

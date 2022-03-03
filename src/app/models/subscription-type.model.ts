@@ -1,6 +1,6 @@
-export class Subscription{
-    id!:number;
-    name!:string;
-    daysNumber!:number;
-    price!:number;
+export interface SubscriptionType{
+    id:number;
+    name:string;
+    daysNumber:number;
+    price:number;
 }

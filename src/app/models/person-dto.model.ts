@@ -21,10 +21,10 @@
 
 export class PersonDTO{
    
-    constructor(id:number=0,identitynumer:string="",identityId:number=0,streetId:number=0,password:string="",firstName:string="",lastName:string="",
+    constructor(id:number=0,identityNumer:string="",identityId:number=0,streetId:number=0,password:string="",firstName:string="",lastName:string="",
         phone1:string="",phone2:string="",phone3:string="",fax:string="",email:string="",buildingNumber:number=0,floor:number=0,mailBox:number=0,userType:number[]=[]) {
         this.id=id;
-        this.identitynumer=identitynumer;
+        this.identityNumer=identityNumer;
         this.identityId=identityId;
         this.streetId=streetId;
         this.password=password;
@@ -40,10 +40,10 @@ export class PersonDTO{
         this.mailBox=mailBox;
         this.userType=userType;
     }
-        id:number=0;
-        identitynumer:string;
+        id:number;
+        identityNumer:string;
         identityId:number;
-        streetId:number=1;
+        streetId:number;
         password:string;
         firstName:string;
         lastName:string;

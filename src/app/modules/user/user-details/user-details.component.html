@@ -14,9 +14,14 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>תעודת זהות/ דרכון</mat-label>
+    <mat-label>תז</mat-label>
     <input matInput formControlName="identityNumer" name="identityNumer" id="identityNumer" required>
   </mat-form-field>
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>תעודת זהות/ דרכון</mat-label>
+    <input matInput formControlName="identityNumer" name="identityNumer" id="identityNumer" required>
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill">
     <mat-label>סוג הזדהות</mat-label>
@@ -104,9 +109,9 @@
     <div class="example-container">
     <mat-form-field appearance="fill">
       <mat-label>עיר</mat-label>
-      <mat-select formControlName="city" name="city" >
+      <mat-select formControlName="city" name="city" required>
         <mat-option>None</mat-option>
-        <mat-option *ngFor="let c of options" [value]="c.id">
+        <mat-option *ngFor="let c of options" [value]="c.id" >
           {{c.name}}
         </mat-option>
       </mat-select>
@@ -124,17 +129,17 @@
 
     <mat-form-field appearance="fill">
       <mat-label>מס בניין</mat-label>
-      <input matInput formControlName="buildingNumber" name="buildingNumber" type="number">
+      <input matInput formControlName="buildingNumber" name="buildingNumber" type="number" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>קומה</mat-label>
-      <input matInput formControlName="floor" name="floor" type="number">
+      <input matInput formControlName="floor" name="floor" type="number" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>תיבת דואר</mat-label>
-      <input matInput formControlName="mailBox" name="mailBox" type="number">
+      <input matInput formControlName="mailBox" name="mailBox" type="number" required>
     </mat-form-field>
 
 
@@ -143,20 +148,18 @@
   <div>
     <mat-form-field appearance="fill">
       <mat-label>סוג המשתמש</mat-label>
-      <mat-select formControlName="userType" multiple>
-        <mat-select-trigger>
-          {{userDetail.controls['userType'].value ? userDetail.controls['userType'].value[0] : ''}}
+      <mat-select formControlName="userType" multiple required>
+        <mat-select-trigger >
+          {{userDetail.controls['userType'].value ? userDetail.controls['userType'].value : ''}}
           <span *ngIf="userDetail.controls['userType'].value?.length > 1" class="example-additional-selection">
             (+{{userDetail.controls['userType'].value.length - 1}} {{userDetail.controls['userType'].value?.length === 2 ? 'other' : 'others'}})
           </span>
         </mat-select-trigger>
-        <mat-option *ngFor="let topping of types " [value]="topping">{{userDetail.controls['userType']}}</mat-option>
+        <mat-option *ngFor="let topping of type" [value]=topping.name>{{topping.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-
   <div class="example-button-row">
-    <button  mat-button (click)="saveUserDetails()">שמירה</button>
+    <button  mat-button [disabled]="userDetail.invalid" (click)="saveUserDetails()">שמירה</button>
   </div>
-    <!-- <button (click)="saveUserDetails()">שמירה</button> -->
 </form>

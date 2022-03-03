@@ -1,6 +1,6 @@
 export interface SubscriptionPerUser{
 id:number;
-subscriptionTypeUserId:number;
+subscriptionTypeId:number;
 areaId:number;
 userId:number;
 startDate:Date;
