@@ -21,6 +21,10 @@ export class SubscriptionPerUserService {
     return this._http.post<number>("api/SubscriptionPerUser/",subscriptionAndPropertyDetailsDTO);
   }
 
+  public putSubscription(subscriptionPerUser:SubscriptionPerUser):Observable<any>{
+    return this._http.put<any>("api/SubscriptionPerUser/",subscriptionPerUser);
+  }
+
 
 
   

@@ -8,6 +8,8 @@ import { SubscriberPropertyDetail } from '../models/subscriber-property-detail.m
 })
 export class SubscriberPropertyDetailsService {
 
+  subscriberPropertyDetailsService!:SubscriberPropertyDetailsService;
+  
   constructor(private _http: HttpClient) { }
 
   public getPropertyDetailsBySubscriberId(id:number):Observable<SubscriberPropertyDetail>{

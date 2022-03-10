@@ -26,13 +26,13 @@
   <!-- 
   <tr
       mat-row
-      (click)="clickedRows.add(row)"
+      (click)="clickedRows=row"
       [class.demo-row-is-clicked]="clickedRows.has(row)"
       *matRowDef="let row; columns: displayedColumns;"
   ></tr> -->
   <tr
       mat-row
-      (click)="clickedRow=row"
+      (click)="openSubscriptionDialog(row)"
       [class.demo-row-is-clicked]="clickedRow==row"
       *matRowDef="let row; columns: displayedColumns;"
   ></tr>

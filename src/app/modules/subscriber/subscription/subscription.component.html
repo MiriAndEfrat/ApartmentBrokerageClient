@@ -1,37 +1,44 @@
 <p>subscription works!</p>
 
+
 <form [formGroup]="subscriptionForm">
-    <mat-form-field appearance="fill">
-        <mat-label>סוג מנוי</mat-label>
-        <mat-select formControlName="subscriptionTypeId" name="subscriptionTypeId">
-          <mat-option *ngFor="let s of subscriptionType" [value]="s.name">
-            {{s.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  
+   <mat-form-field appearance="fill">
+    <mat-label>סוג מנוי</mat-label>
+    <mat-select formControlName="subscriptionTypeId" name="subscriptionTypeId" required>
+      <mat-option *ngFor="let c of subscriptionType" [value]="c">
+        {{c.id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>אזור</mat-label>
-        <mat-select formControlName="areaId" name="areaId">
-          <mat-option *ngFor="let s of subscriptionType" [value]="s.name">
-            {{s.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>אזור</mat-label>
+    <mat-select formControlName="areaId" name="areaId" required>
+      <mat-option *ngFor="let s of subscriptionType" [value]="s.name">
+        {{s.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>    
 
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Angular forms</mat-label>
-        <input matInput [matDatepicker]="picker1" formControlName="startDate" name="startDate">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input formControlName="startDate" matInput [matDatepicker]="picker" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>  
 
-      <mat-form-field appearance="fill">
-        <mat-label>Choose a date</mat-label>
-      <!-- #docregion toggle -->
-        <input matInput [matDatepicker]="picker" formControlName="startDate" name="startDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      <!-- #enddocregion toggle -->
-      </mat-form-field>
+
+  
 </form>
+<div class="example-button-row">
+  <button mat-button (click)="filterSettings()">סמן הגדרות סינון לדירה שישמרו עבורך</button>
+  <button mat-button [disabled]="subscriptionForm.invalid" (click)="saveSubscription()">שמירה</button>
+
+</div>
+
+<app-filter-setting *ngIf="showFilterSetting"></app-filter-setting>
+
+<!-- <div>
+  Hello, {{data.row.startDate}}
+</div>> -->

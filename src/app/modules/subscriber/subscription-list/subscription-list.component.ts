@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SubscriptionPerUser } from 'src/app/models/subscription-per-user.model';
 import { SubscriptionPerUserService } from 'src/app/services/subscription-per-user.service';
 import { UserService } from 'src/app/services/user.service';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { SubscriptionDialogComponent } from '../subscription-dialog/subscription-dialog.component';
+import { SubscriptionComponent } from '../subscription/subscription.component';
 
 /*const ELEMENT_DATA1: SubscriptionPerUser[] = [
   {id:1,subscriptionType:1,areaId:1,userId:1013,startDate:new Date,endDate:new Date},
@@ -22,7 +25,7 @@ export class SubscriptionListComponent implements OnInit {
   clickedRow! :SubscriptionPerUser;
 
 
-  constructor(private _userService:UserService,private _subscriptionPerUserService:SubscriptionPerUserService) { }
+  constructor(private _userService:UserService,private _subscriptionPerUserService:SubscriptionPerUserService,public _dialog: MatDialog) { }
 
 
 
@@ -33,4 +36,16 @@ export class SubscriptionListComponent implements OnInit {
   }
 
 
+  openSubscriptionDialog(row:any) {
+    const dialogRef = this._dialog.open(SubscriptionComponent,{
+      // width:'700px',
+      // height:'800px',
+      data:{row},
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

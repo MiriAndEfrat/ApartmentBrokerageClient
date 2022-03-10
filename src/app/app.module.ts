@@ -30,7 +30,8 @@ import { ManagementModule } from './modules/management/management.module';
     UserModule,
     AdvertiserModule,
     SubscriberModule,
-    ManagementModule
+    ManagementModule,
+    
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
