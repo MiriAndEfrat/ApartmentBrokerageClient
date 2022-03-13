@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { SubscriptionDialogComponent } from '../subscription-dialog/subscription-dialog.component';
 import { SubscriptionComponent } from '../subscription/subscription.component';
+import { PropertyDetail } from 'src/app/models/property-details.model';
+import { PropertyDetailsService } from 'src/app/services/property-details.service';
 
 /*const ELEMENT_DATA1: SubscriptionPerUser[] = [
   {id:1,subscriptionType:1,areaId:1,userId:1013,startDate:new Date,endDate:new Date},
@@ -17,8 +19,7 @@ import { SubscriptionComponent } from '../subscription/subscription.component';
   styleUrls: ['./subscription-list.component.css']
 })
 export class SubscriptionListComponent implements OnInit {
-
- 
+  
   subscriptionList!:SubscriptionPerUser[];
   
   displayedColumns: string[] = ['subscriptionTypeId', 'areaId',  'startDate', 'endDate'];
@@ -32,11 +33,11 @@ export class SubscriptionListComponent implements OnInit {
   ngOnInit(): void {
     //this._subscriptionPerUserService.getSubscriptionsById(this._userService.currentUser.id).subscribe(data=>{this.subscriptionList=data;this.dataSource=this.subscriptionList});
     this._subscriptionPerUserService.getSubscriptionsById(1013).subscribe(data=>{this.subscriptionList=data;console.log(this.subscriptionList)});
-
+    
   }
 
 
-  openSubscriptionDialog(row:any) {
+  openSubscriptionDialog(row:any=null) {
     const dialogRef = this._dialog.open(SubscriptionComponent,{
       // width:'700px',
       // height:'800px',

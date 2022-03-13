@@ -15,6 +15,7 @@ import { SubscriptionPerUserService } from 'src/app/services/subscription-per-us
 import { Router } from '@angular/router';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { SubscriberPropertyDetailsService } from 'src/app/services/subscriber-property-details.service';
+import { SubscriberPropertyDetail } from 'src/app/models/subscriber-property-detail.model';
 
 
 @Component({
@@ -23,7 +24,7 @@ import { SubscriberPropertyDetailsService } from 'src/app/services/subscriber-pr
   styleUrls: ['./filter-setting.component.css']
 })
 export class FilterSettingComponent implements OnInit {
-
+  property!:SubscriberPropertyDetail;
   filterSettingForm!:FormGroup;
 
   subscriptionType:SubscriptionType[]=[
@@ -32,8 +33,10 @@ export class FilterSettingComponent implements OnInit {
   ];
   constructor(private _router:Router,private _subscriberPropertyDetailsService:SubscriberPropertyDetailsService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.filterSettingForm=new FormGroup({
+      id:new FormControl(),//
+      subscriptionPerUserId:new FormControl(),//
       propertyTypeId:new FormControl(),
       cityId:new FormControl(),
       neighborhoodId:new FormControl(),
@@ -60,6 +63,8 @@ export class FilterSettingComponent implements OnInit {
   }
 
   saveSubscriberPropertyDetails(){
-    
+    this.property=this.filterSettingForm.value;
+    console.log(this.property);
+    this._subscriberPropertyDetailsService.PutPropertyDetails(this.property).subscribe((data)=>{console.log(data)});
   }
 }

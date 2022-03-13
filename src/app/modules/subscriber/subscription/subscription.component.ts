@@ -13,6 +13,7 @@ import { SubscriptionPerUserService } from 'src/app/services/subscription-per-us
 import { SubscriberPropertyDetailsService } from 'src/app/services/subscriber-property-details.service';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SubscriberPropertyDetail } from 'src/app/models/subscriber-property-detail.model';
 
 
 @Component({
@@ -24,7 +25,6 @@ export class SubscriptionComponent implements OnInit {
   subscriptionForm!:FormGroup
   showFilterSetting:boolean=false;
   row!:SubscriptionPerUser;
-  
 
 subscriptionType:SubscriptionType[]=[
   {id:1,name:'j',daysNumber:30,price:30},
@@ -35,17 +35,23 @@ subscriptionType:SubscriptionType[]=[
  
   constructor(private _userService:UserService,private _subscriptionPerUserService:SubscriptionPerUserService,
     private _router:Router,private _subscriberPropertyDetailsService:SubscriberPropertyDetailsService,
-    @Inject(MAT_DIALOG_DATA) public data: {row:SubscriptionPerUser}) { }
+    @Inject(MAT_DIALOG_DATA) public data: {row:SubscriptionPerUser} ) { }
 
   ngOnInit(): void {
-  this.subscriptionForm=new FormGroup({
-  subscriptionTypeId:new FormControl(),
-  areaId:new FormControl(),
-  startDate:new FormControl(),  
-  });
   this.row=this.data.row;
+  this.subscriptionForm=new FormGroup({
+  id:new FormControl(this.row?.id),
+  subscriptionTypeId:new FormControl(),
+  // userId:new FormControl(this._userService.currentUser.id),
+  userId:new FormControl(1013),
+
+  areaId:new FormControl(),
+  startDate:new FormControl(),
+  endDate:new FormControl(new Date()),  
+  });
+  
   console.log(this.row);
-  this.subscriptionForm.patchValue(this.row);
+  // this.subscriptionForm.patchValue(this.row);
   }
 
   
@@ -57,6 +63,34 @@ subscriptionType:SubscriptionType[]=[
 
   saveSubscription(){
     
+    console.log("saveSubscription");
+    console.log(this._userService.currentUser)
+    console.log(this.subscriptionForm.controls['userId'].value);
+
+debugger;
+    if(this.row==null){
+    //new subscription
+    // this._subscriberPropertyDetailsService.subscriptionAndPropertyDetailsDTO.subscriptionTypeId=this.subscriptionForm.controls['subscriptionTypeId'].value;
+    // this._subscriberPropertyDetailsService.subscriptionAndPropertyDetailsDTO.areaId=this.subscriptionForm.controls['areaId'].value;
+    // this._subscriberPropertyDetailsService.subscriptionAndPropertyDetailsDTO.startDate=this.subscriptionForm.controls['startDate'].value;
+    console.log(this.row);
+
+    this.row=this.subscriptionForm.value;
+    console.log(this.row);
+  }
+  else{
+    debugger;
+
+    //edit subscription
+    console.log(this.row);
+
+    this.row=this.subscriptionForm.value;
+    console.log(this.row);
+    debugger;
+
+    this._subscriptionPerUserService.putSubscription(this.row).subscribe();
+    console.log(this.row);
+  }
   }
 
 }

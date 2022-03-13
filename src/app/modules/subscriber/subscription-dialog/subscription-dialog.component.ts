@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscriptionDialogComponent implements OnInit {
 
+  showFilterSetting:boolean=false;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -1,1 +1,57 @@
 <p>assets-per-subscription works!</p>
+
+<table mat-table [dataSource]="assetsList">
+    <!-- <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef>sku</th>
+        <td mat-cell *matCellDef="let emp"> {{emp.sku}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="streetId">
+        <th mat-header-cell *matHeaderCellDef>streetId</th>
+        <td mat-cell *matCellDef="let emp"> {{emp.streetId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="propertyTypeId">
+        <th mat-header-cell *matHeaderCellDef>propertyTypeId</th>
+        <td mat-cell *matCellDef="let emp"> {{emp.propertyTypeId}} </td>
+      </ng-container> -->
+
+      <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let emp"> {{emp[column]}} </td>
+</ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      
+      <tr mat-row *matRowDef="let emprow; columns: displayedColumns;"></tr>
+
+
+    </table>
+
+<!-- id:number;
+   sku:number;
+   userPropertyNumber:number;
+   userId:number;
+   streetId:number;
+   propertyTypeId:number;
+   buildingNumber:number;
+   propertyNumber:number;
+   floor:number;
+   numberRoom:number;
+   squareMeter:number;
+   severalDirectionsOfAir:number;
+   price:number;
+   statusId:number;
+   propertyTaxPrice:number;
+   entryDate:Date;
+   elevators:boolean;
+   renovated:boolean;
+   accessForDisabled:boolean;
+   parking:boolean;
+   storage:boolean;
+   furnished:boolean;
+   airConditioning:boolean;
+   yard:boolean;
+   porch:boolean;
+   available:boolean;
+   freeDescription:string -->

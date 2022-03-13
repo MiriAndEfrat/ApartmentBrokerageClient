@@ -22,7 +22,11 @@ export class SubscriptionPerUserService {
   }
 
   public putSubscription(subscriptionPerUser:SubscriptionPerUser):Observable<any>{
-    return this._http.put<any>("api/SubscriptionPerUser/",subscriptionPerUser);
+    console.log("putSubscription1");
+    console.log(subscriptionPerUser);
+    return this._http.put<any>("api/SubscriptionPerUser",subscriptionPerUser);
+    console.log("putSubscription2");
+
   }
 
 

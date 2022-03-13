@@ -11,23 +11,23 @@ export class PropertyDetailsService {
   constructor(private _http: HttpClient) { }
 
   public getByAreaId(id:number):Observable<PropertyDetail[]>{
-    return this._http.get<PropertyDetail[]>("api/PropertyDetailController/areaId/"+id);
+    return this._http.get<PropertyDetail[]>("api/PropertyDetail/areaId/"+id);
   }
 
   public getByUserId(id:number):Observable<PropertyDetail[]>{
-    return this._http.get<PropertyDetail[]>("api/PropertyDetailController/advertiserId/"+id);
+    return this._http.get<PropertyDetail[]>("api/PropertyDetail/advertiserId/"+id);
   }
 
   public postPropertyDetail(propertyDetail:PropertyDetail){
-    this._http.post("api/PropertyDetailController/",propertyDetail);
+    this._http.post("api/PropertyDetail/",propertyDetail);
   }
 
   public putPropertyDetail(propertyDetail:PropertyDetail,id:number){
-    this._http.put("api/PropertyDetailController/"+id,propertyDetail);
+    this._http.put("api/PropertyDetail/"+id,propertyDetail);
   }
 
   public deletePropertyDetail(id:number){
-    this._http.delete("api/PropertyDetailController/"+id);
+    this._http.delete("api/PropertyDetail/"+id);
   }
         
 

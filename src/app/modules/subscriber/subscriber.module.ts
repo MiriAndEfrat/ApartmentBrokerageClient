@@ -25,6 +25,7 @@ const ROUTES: Routes = [
   { path: "subscriptionList", component: SubscriptionListComponent },
   { path: "subscription", component: SubscriptionComponent },
   { path: "filterSetting", component: FilterSettingComponent },
+  { path: "assetsList", component: AssetsPerSubscriptionComponent },
 ]
 
 @NgModule({
@@ -48,7 +49,8 @@ const ROUTES: Routes = [
     MatInputModule,
     MatCheckboxModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ]
 
 })
